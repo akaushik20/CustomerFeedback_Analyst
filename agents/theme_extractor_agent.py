@@ -13,6 +13,6 @@ def extract_themes(feedback_text, system_prompt=system_prompt, model=model, prod
     print("Combined Prompt:", combined_prompt)  # Debugging line to check the prompt
 
     genai_response = model.generate_content(combined_prompt)
-    print(genai_response.text)
+    #print(genai_response.text)
     return genai_response.text
 
