@@ -34,10 +34,14 @@ if bt_loadData:
 
 if p_dataload and f_dataload:
     print("Extracting themes...")
-    themes = extract_themes(feedback, config.THEME_EXTRACTION_PROMPT, 
+    themes, valid_json = extract_themes(feedback, config.THEME_EXTRACTION_PROMPT, 
                             model=model, prod_usage=None)
     st.write("Extracted Themes:")
-    st.text(themes)
+    if valid_json:
+        st.write("Successfully extracted valid JSON themes.")
+    else:
+        st.write("The extracted themes are not valid JSON.")
+    
 
 
 
