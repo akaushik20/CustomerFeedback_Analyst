@@ -14,5 +14,5 @@ def extract_themes():
     print(genai_response.text)
     return genai_response.text
 
-if __name__ == "__main__":
-    extract_themes()
+#if __name__ == "__main__":
+#    extract_themes()
