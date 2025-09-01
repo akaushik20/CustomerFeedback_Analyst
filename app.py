@@ -10,10 +10,17 @@ if bt_loadData:
     loader = DataLoader()  # Create an instance
     
     prod_usage = loader.load_data(config.PROD_USAGE_FILE_PATH)  # Call a method (example)
-    st.write(prod_usage)
+    if prod_usage.empty:
+        st.write("No data found in product usage file.")
+    else:
+        st.write("Product Usage Data loaded successfully!")
 
     feedback = loader.load_json(config.FEEDBACK_FILE_PATH)
-    st.write(feedback)
+    if feedback.empty:
+        st.write("No data found in feedback file.")
+    else:
+        st.write("Feedback Data loaded successfully!")
+
 
 
 
