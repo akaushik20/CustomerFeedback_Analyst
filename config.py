@@ -28,3 +28,8 @@ Task: Your task is to analyze customer feedback and extract the main themes or t
     - Do not include any text before or after the JSON array. The output should be only valid JSON array.
     - If feedback is empty, return an empty list."""
 
+TREND_ANALYSIS_PROMPT = """You are a trend analysis agent.
+Your task is to analyze trends over time based on the extracted themes from customer feedback.
+Given a list of themes and their associated feedback data, identify any emerging trends or patterns.
+Plot how frequently these themes occur over time (weekly or monthly).
+Include a short summary."""

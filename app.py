@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from agents.data_loader import DataLoader  # Import the class
 from agents.theme_extractor_agent import extract_themes
+from agents.analysis_agent import trend_analysis
 import config
 from google import generativeai as genai
 
@@ -10,6 +11,7 @@ bt_loadData=st.button("Load Data")
 
 p_dataload=False
 f_dataload=False
+valid_json=False
 
 api_key = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=api_key)
@@ -31,17 +33,29 @@ if bt_loadData:
     else:
         st.write("Feedback Data loaded successfully!")
         f_dataload = True
+        st.session_state["feedback"] = feedback
 
 if p_dataload and f_dataload:
     print("Extracting themes...")
     themes, valid_json = extract_themes(feedback, config.THEME_EXTRACTION_PROMPT, 
                             model=model, prod_usage=None)
+    st.session_state["themes"] = themes
+    st.session_state["valid_json"] = valid_json
     st.write("Extracted Themes:")
     if valid_json:
         st.write("Successfully extracted valid JSON themes.")
     else:
         st.write("The extracted themes are not valid JSON.")
-    
+
+if st.session_state.get("valid_json", False):
+    bt_analytics=st.button("Show Analytics !")
+
+    if bt_analytics:
+        trend_analysis_response = trend_analysis(st.session_state["themes"],
+                                                  st.session_state["feedback"],
+                                                    config.TREND_ANALYSIS_PROMPT, model)
+        st.write("Trend Analysis Response:")
+        st.write(trend_analysis_response.text)
 
 
 
