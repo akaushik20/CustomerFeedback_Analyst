@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from agents.data_loader import DataLoader  # Import the class
 from agents.theme_extractor_agent import extract_themes
-from agents.analysis_agent import trend_analysis
+from agents.analysis_agent import trend_analysis, data_summary
 import config
 from google import generativeai as genai
 
@@ -51,11 +51,12 @@ if st.session_state.get("valid_json", False):
     bt_analytics=st.button("Show Analytics !")
 
     if bt_analytics:
-        trend_analysis_response = trend_analysis(st.session_state["themes"],
-                                                  st.session_state["feedback"],
-                                                    config.TREND_ANALYSIS_PROMPT, model)
-        st.write("Trend Analysis Response:")
-        st.write(trend_analysis_response.text)
+        data_summary_df = data_summary(config.FEEDBACK_FILE_PATH, "genai_response.json")
+        #trend_analysis_response = trend_analysis(st.session_state["themes"],
+        #                                          st.session_state["feedback"],
+        #                                            config.TREND_ANALYSIS_PROMPT, model)
+        st.write(f'Data Summary with {len(data_summary_df)} records')
+        #st.write(trend_analysis_response.text)
 
 
 
