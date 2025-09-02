@@ -6,6 +6,9 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import pandas as pd
+import altair as alt
+
+
 
 
 def trend_analysis(themes, feedback, trend_prompt, model):
@@ -64,12 +67,34 @@ def plot_graphs(feedback_df):
     st.header("Data Visualizations")
     st.write("This section will contain various data visualizations based on the feedback data.")
 
-    # Example: Bar chart of theme distribution
+    # Bar chart of theme distribution
     if "theme" in feedback_df.columns:
-        theme_counts = feedback_df['theme'].value_counts()
+        theme_counts = feedback_df['theme'].value_counts().sort_values(ascending=False)
+        #st.subheader("Theme Distribution")
+        #st.bar_chart(theme_counts)
+        theme_counts_df = theme_counts.reset_index()
+        theme_counts_df.columns = ['theme', 'count']
+        theme_counts_df = theme_counts_df.sort_values('count', ascending=False)
         st.subheader("Theme Distribution")
-        st.bar_chart(theme_counts)
+        st.bar_chart(theme_counts_df.set_index('theme'))
     else:
         st.write("No themes found in the feedback data to plot.")
-    # Additional visualizations can be added here based on requirements
+    
+    # Trend by week & month
+    if "created_at" in feedback_df.columns:
+        feedback_df["created_at"] = pd.to_datetime(feedback_df["created_at"])
+        
+        # Weekly trend
+        feedback_df["week"] = feedback_df["created_at"].dt.to_period("W").apply(lambda r: r.start_time)
+        weekly_trend = feedback_df.groupby("week").size()
+        st.subheader("Feedback Trend by Week")
+        st.line_chart(weekly_trend)
+
+        # Monthly trend
+        #feedback_df["month"] = feedback_df["created_at"].dt.to_period("M").apply(lambda r: r.start_time)
+        #monthly_trend = feedback_df.groupby("month").size()
+        #st.subheader("Feedback Trend by Month")
+        #st.line_chart(monthly_trend)
+    else:
+        st.write("No date column found for trend analysis.")
 
