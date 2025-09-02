@@ -1,72 +1,72 @@
 [
     {
         "id": "87485d65-56d3-4cd5-9667-5421ef7607a0",
-        "theme": "Selfie step repetition issue",
+        "theme": "Selfie verification issues",
         "sentiment": "negative",
-        "explanation": "The user is experiencing repeated selfie verification steps.",
+        "explanation": "The user is experiencing problems with the selfie verification step.",
         "confidence": 0.9
     },
     {
         "id": "d704af82-a1cf-4dce-9685-bb53a818cf8c",
-        "theme": "Positive customer support experience",
+        "theme": "Positive customer support",
         "sentiment": "positive",
-        "explanation": "The user received helpful and positive support from customer service.",
-        "confidence": 0.95
+        "explanation": "The user received helpful and positive customer support.",
+        "confidence": 1.0
     },
     {
         "id": "696393b6-b3db-4622-8841-67f49ca27a6a",
         "theme": "Unclear approval criteria",
         "sentiment": "negative",
-        "explanation": "The user finds the approval rules confusing and was rejected.",
-        "confidence": 0.9
+        "explanation": "The user found the approval rules confusing and was rejected.",
+        "confidence": 0.95
     },
     {
         "id": "a4f49e7a-88ce-45aa-ae45-af6a2773967a",
         "theme": "Positive cash access experience",
         "sentiment": "positive",
-        "explanation": "The user appreciates the quick access to cash provided by the app.",
-        "confidence": 0.95
+        "explanation": "The user is happy with the quick access to cash.",
+        "confidence": 1.0
     },
     {
         "id": "39984937-8702-41c4-8dcb-a619e8474d34",
         "theme": "Positive UI feedback",
         "sentiment": "positive",
-        "explanation": "The user finds the new user interface clean and easy to use.",
-        "confidence": 0.95
+        "explanation": "The user finds the new UI clean and easy to use.",
+        "confidence": 1.0
     },
     {
         "id": "3e63073b-5671-4e27-bd19-3ae1a20f02d9",
         "theme": "Excessive reminder frequency",
         "sentiment": "negative",
-        "explanation": "The user wants the app to reduce the frequency of reminders.",
+        "explanation": "The user wants the reminder frequency reduced.",
         "confidence": 0.9
     },
     {
         "id": "602226dc-4a94-4eb5-9bd5-9bd3bba716a5",
         "theme": "Positive approval speed",
         "sentiment": "positive",
-        "explanation": "The user received quick approval for their request.",
-        "confidence": 0.95
+        "explanation": "The user appreciates the quick approval process.",
+        "confidence": 1.0
     },
     {
         "id": "059bd08b-b530-4f55-8871-d4e6ff8a2bf8",
         "theme": "Chime linking errors",
         "sentiment": "negative",
-        "explanation": "The user is unable to link their Chime account due to verification errors.",
-        "confidence": 0.9
+        "explanation": "The user is unable to link their Chime account due to verification failures.",
+        "confidence": 0.95
     },
     {
         "id": "9ddbaeec-4a95-49db-bb0c-2f2b42a43167",
         "theme": "Strict advance requirements",
         "sentiment": "negative",
-        "explanation": "The user believes the requirements for small advances are too strict.",
+        "explanation": "The user finds the requirements for small advances too strict.",
         "confidence": 0.9
     },
     {
         "id": "eb971c33-43ba-470d-8d21-4a1eac686b65",
-        "theme": "Helpful budgeting tips",
+        "theme": "Positive budgeting tool feedback",
         "sentiment": "positive",
-        "explanation": "The user found the budgeting tips within the app helpful.",
-        "confidence": 0.95
+        "explanation": "The user finds the budgeting tips helpful.",
+        "confidence": 1.0
     }
 ]

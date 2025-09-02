@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from agents.data_loader import DataLoader  # Import the class
 from agents.theme_extractor_agent import extract_themes
-from agents.analysis_agent import trend_analysis, data_summary
+from agents.analysis_agent import trend_analysis, data_summary, plot_graphs
 import config
 from google import generativeai as genai
 
@@ -57,6 +57,8 @@ if st.session_state.get("valid_json", False):
         #                                            config.TREND_ANALYSIS_PROMPT, model)
         st.write(f'Data Summary with {len(data_summary_df)} records')
         #st.write(trend_analysis_response.text)
+        plot_graphs(data_summary_df)
+
 
 
 
