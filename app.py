@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from agents.data_loader import DataLoader  # Import the class
 from agents.theme_extractor_agent import extract_themes
-from agents.analysis_agent import trend_analysis, data_summary, plot_graphs
+from agents.analysis_agent import trend_analysis, data_summary, plot_graphs, join_prod_feedback
 import config
 from google import generativeai as genai
 
@@ -26,6 +26,7 @@ if bt_loadData:
     else:
         st.write("Product Usage Data loaded successfully!")
         p_dataload = True
+        st.session_state["prod_usage"] = prod_usage
 
     feedback = loader.load_json(config.FEEDBACK_FILE_PATH)
     if feedback.empty:
@@ -56,9 +57,14 @@ if st.session_state.get("valid_json", False):
         #                                          st.session_state["feedback"],
         #                                            config.TREND_ANALYSIS_PROMPT, model)
         st.write(f'Data Summary with {len(data_summary_df)} records')
-        #st.write(trend_analysis_response.text)
+
         plot_graphs(data_summary_df)
 
+        ## Calling function to JOIN files
+        if data_summary_df is not None and "prod_usage" in st.session_state:
+            feedback_with_prod = join_prod_feedback(data_summary_df, st.session_state["prod_usage"])
+            st.write(f'Feedback data enriched with product usage data, total records: {len(feedback_with_prod)}')
+    
 
 
 

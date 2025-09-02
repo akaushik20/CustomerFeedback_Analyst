@@ -90,11 +90,24 @@ def plot_graphs(feedback_df):
         st.subheader("Feedback Trend by Week")
         st.line_chart(weekly_trend)
 
-        # Monthly trend
-        #feedback_df["month"] = feedback_df["created_at"].dt.to_period("M").apply(lambda r: r.start_time)
-        #monthly_trend = feedback_df.groupby("month").size()
-        #st.subheader("Feedback Trend by Month")
-        #st.line_chart(monthly_trend)
+    # Stack Bar graph for sentiment within themes
+    if "theme" in feedback_df.columns and "sentiment" in feedback_df.columns:
+        sentiment_theme_counts = feedback_df.groupby(["theme", "sentiment"]).size().reset_index(name='count')
+        st.subheader("Sentiment Distribution within Themes")
+        chart = alt.Chart(sentiment_theme_counts).mark_bar().encode(
+            x='theme',
+            y='count',
+            color='sentiment'
+        ).properties(width=700)
+        st.altair_chart(chart)
+
     else:
         st.write("No date column found for trend analysis.")
+    
+def join_prod_feedback(feedback_df, prod_usage):
+    feedback_prod_merge = pd.merge(feedback_df, prod_usage, on="customer_id", how="inner")
+    print("Feedback with Theme file length: ", len(feedback_df))
+    print("Product usage file length: ", len(prod_usage))
+    print("Merged file length: ", len(feedback_prod_merge))
+    return feedback_prod_merge
 
