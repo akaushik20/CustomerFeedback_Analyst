@@ -8,6 +8,7 @@ import config
 from google import generativeai as genai
 
 st.title("Customer Feedback Analyst")
+st.subheader("📥 Step 1: Load Data")
 bt_loadData=st.button("Load Data")
 
 p_dataload=False
@@ -49,8 +50,10 @@ if p_dataload and f_dataload:
     else:
         st.write("The extracted themes are not valid JSON.")
 
+
 if st.session_state.get("valid_json", False):
-    bt_analytics=st.button("Show Analytics !")
+    st.subheader("📊 Step 2: Trend & Theme Analysis")
+    bt_analytics=st.button("Show Analytics!")
 
     if bt_analytics:
         data_summary_df = data_summary(config.FEEDBACK_FILE_PATH, "genai_response.json")
@@ -67,6 +70,7 @@ if st.session_state.get("valid_json", False):
             st.write(f'Feedback data enriched with product usage data, total records: {len(feedback_with_prod)}')
     
         #with st.spinner("Generating recommendations..."):
+        st.subheader("💡 Step 3: AI Recommendations")
         generate_summary = generate_summary(data_summary_df, st.session_state["prod_usage"], feedback_with_prod)
         recommendations = llm_recommendations(generate_summary, model, config.RECOMMEDATION_AGENT)
         st.success("Successfully Generated LLM Recommedations!")
