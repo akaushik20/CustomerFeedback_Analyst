@@ -2,6 +2,7 @@
 
 A Streamlit-based app that analyzes customer feedback, extracts key themes using LLMs, joins with product usage metrics, and provides actionable recommendations using LLM.
 
+🔗 Hosted on [Streamlit Cloud](https://customerfeedbackanalyst-584hnbfdyx9jwkfascp2bh.streamlit.app/)
 ---
 
 ## ✨ Problem Framing & Assumptions
@@ -69,5 +70,6 @@ streamlit run app.py
 ## ⏳ What I'd Do Next
 
 ---
+Hosted
 
 Built with ❤️ by [Arpita Kaushik](https://github.com/akaushik20)
