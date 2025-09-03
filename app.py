@@ -69,7 +69,7 @@ if st.session_state.get("valid_json", False):
         #with st.spinner("Generating recommendations..."):
         generate_summary = generate_summary(data_summary_df, st.session_state["prod_usage"], feedback_with_prod)
         recommendations = llm_recommendations(generate_summary, model, config.RECOMMEDATION_AGENT)
-        st.success("Done!")
+        st.success("Successfully Generated LLM Recommedations!")
         st.write(recommendations)
 
 
