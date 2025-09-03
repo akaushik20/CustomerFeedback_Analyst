@@ -3,6 +3,7 @@ import pandas as pd
 from agents.data_loader import DataLoader  # Import the class
 from agents.theme_extractor_agent import extract_themes
 from agents.analysis_agent import trend_analysis, data_summary, plot_graphs, join_prod_feedback
+from agents.recommendations import llm_recommendations, generate_summary
 import config
 from google import generativeai as genai
 
@@ -65,6 +66,11 @@ if st.session_state.get("valid_json", False):
             feedback_with_prod = join_prod_feedback(data_summary_df, st.session_state["prod_usage"])
             st.write(f'Feedback data enriched with product usage data, total records: {len(feedback_with_prod)}')
     
+        #with st.spinner("Generating recommendations..."):
+        generate_summary = generate_summary(data_summary_df, st.session_state["prod_usage"], feedback_with_prod)
+        recommendations = llm_recommendations(generate_summary, model, config.RECOMMEDATION_AGENT)
+        st.success("Done!")
+        st.write(recommendations)
 
 
 
