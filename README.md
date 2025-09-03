@@ -66,10 +66,19 @@ streamlit run app.py
 ---
 
 ## 📅 Key Decisions & Trade-offs
+- Used a lightweight Streamlit front end for simplicity and ease of deployment. Hosting on Streamlit Cloud makes it straightforward to share with a broader audience.  
+- Implemented LLM-based theme extraction. Large Language Models are well-suited for topic classification. Gemini was selected as the foundational model for its cost-effectiveness and quick response times.  
+- Generated embeddings using the Sentence Transformer library and applied cosine similarity to link feedback to themes. Alternatives like FAISS or OpenAI embeddings are other options but not suitable for this use case given the simplicity of the sample dataset.  
+- Summarized the data before including it in the final recommendation prompt, rather than passing all raw feedback. Supplying raw data could have introduced irrelevant or misleading context.  
 
 ## ⏳ What I'd Do Next
+- Explore a multi-agent setup using LangGraph or CrewAI  
+- Add memory to enhance continuity within the multi-agent workflow  
+- Cache results once the LLM extracts themes from customer feedback (avoid re-running if results are already validated)  
+- Perform deeper analysis on each theme by correlating product usage patterns with negative sentiment  
+- Improve overall code structure through refactoring  
 
 ---
 Hosted
 
-Built with ❤️ by [Arpita Kaushik](https://github.com/akaushik20)
+Built by [Arpita Kaushik](https://github.com/akaushik20)
